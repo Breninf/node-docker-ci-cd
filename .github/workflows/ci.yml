@@ -1,0 +1,11 @@
+name: CI Inicial
+
+on: [push]
+
+jobs:
+  teste:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Teste inicial
+        run: echo "Pipeline funcionando 🚀"
