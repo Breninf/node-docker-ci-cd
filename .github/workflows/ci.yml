@@ -7,20 +7,27 @@ on:
     branches: [develop, main]
 
 jobs:
-  build-and-test:
+  test:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout do código
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 18
 
-      - name: Instalar dependências
-        run: npm install
+      - run: npm install
+      - run: npm test
 
-      - name: Rodar testes
-        run: npm test
+  build:
+    runs-on: ubuntu-latest
+    needs: test   # 🔥 só roda se testes passarem
+
+    if: github.ref == 'refs/heads/main'  # 🔥 só na main
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build -t node-api .
