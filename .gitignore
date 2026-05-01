@@ -1,5 +1,6 @@
 # Dependências
-node_modules/
+backend/node_modules
+frontend/node_modules
 
 # Logs
 logs
@@ -10,18 +11,18 @@ yarn-error.log*
 
 # Ambiente
 .env
-.env.* 
+.env.*
 
 # Build / dist
 dist/
 build/
 
+# Cobertura de testes
+coverage/
+
 # Arquivos do sistema
 .DS_Store
 Thumbs.db
-
-# Cobertura de testes
-coverage/
 
 # IDEs e editores
 .vscode/
