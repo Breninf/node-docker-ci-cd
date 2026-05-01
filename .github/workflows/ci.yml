@@ -16,9 +16,16 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 18
+      
+      - name: Install dependencies
+        run: |
+          cd backend
+          npm install
 
-      - run: npm install
-      - run: npm test
+      - name: Run tests
+        run: |
+          cd backend
+          npm test
 
   build:
     runs-on: ubuntu-latest
@@ -31,4 +38,4 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Build Docker image
-        run: docker build -t node-api .
+        run: docker build -t node-api ./backend
